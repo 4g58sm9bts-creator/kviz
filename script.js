@@ -55,7 +55,11 @@ const defaultQuestions = {
   ]
 };
 
-// -------------------- UČITANJE UČITELJSKIH PITANJA --------------------
+// -------------------- KONSTANTE ZA LOCALSTORAGE --------------------
+
+const LS_RESULTS_KEY = "quizResults"; // svi rezultati (za leaderboard)
+
+// -------------------- FUNKCIJE ZA REZULTATE --------------------
 
 function loadTeacherQuestions() {
   try {
@@ -80,8 +84,6 @@ function shuffleArray(arr) {
   return a;
 }
 
-// -------------------- OCJENA --------------------
-
 function calculateSchoolGrade(percent) {
   if (percent >= 90) return 5;
   if (percent >= 75) return 4;
@@ -90,9 +92,38 @@ function calculateSchoolGrade(percent) {
   return 1;
 }
 
+function saveResultToLeaderboard(name, grade, score, total) {
+  const percent = Math.round((score / total) * 100);
+  const result = {
+    name,
+    grade,
+    score,
+    total,
+    percent,
+    timestamp: Date.now()
+  };
+
+  let results = [];
+  try {
+    results = JSON.parse(localStorage.getItem(LS_RESULTS_KEY)) || [];
+  } catch {
+    results = [];
+  }
+
+  results.push(result);
+
+  // po želji možemo ograničiti na npr. zadnjih 200
+  if (results.length > 200) {
+    results = results.slice(results.length - 200);
+  }
+
+  localStorage.setItem(LS_RESULTS_KEY, JSON.stringify(results));
+}
+
 // -------------------- STANJE KVIZA --------------------
 
 let currentGrade = null;
+let currentPlayerName = "";
 let questions = [];
 let currentIndex = 0;
 let score = 0;
@@ -105,7 +136,7 @@ document.addEventListener("DOMContentLoaded", () => {
   gradeButtons.forEach((btn) => {
     btn.addEventListener("click", () => {
       const grade = parseInt(btn.dataset.grade, 10);
-      startQuiz(grade);
+      startQuizWithName(grade);
     });
   });
 
@@ -114,7 +145,7 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("change-grade-btn").addEventListener("click", () => showSection("select"));
 });
 
-// -------------------- PRIKAZ SEKCIJA --------------------
+// -------------------- FUNKCIJE ZA SEKCIJE --------------------
 
 function showSection(which) {
   document.getElementById("select-level").classList.add("hidden");
@@ -124,9 +155,29 @@ function showSection(which) {
   if (which === "select") document.getElementById("select-level").classList.remove("hidden");
   if (which === "quiz") document.getElementById("quiz").classList.remove("hidden");
   if (which === "end") document.getElementById("end").classList.remove("hidden");
+
+  if (which === "select") {
+    document.getElementById("title").textContent = "Početak";
+  }
 }
 
-// -------------------- KVIZ --------------------
+// -------------------- KVIZ – START S IMENOM --------------------
+
+function startQuizWithName(grade) {
+  const nameInput = document.getElementById("player-name");
+  const name = (nameInput.value || "").trim();
+
+  if (!name || name.length < 2) {
+    alert("Molim te upiši svoje ime (barem 2 slova) prije početka kviza.");
+    nameInput.focus();
+    return;
+  }
+
+  currentPlayerName = name;
+  startQuiz(grade);
+}
+
+// -------------------- KVIZ GLAVNI --------------------
 
 function startQuiz(grade) {
   currentGrade = grade;
@@ -136,6 +187,7 @@ function startQuiz(grade) {
 
   document.getElementById("title").textContent = `Razred: ${grade}.`;
   document.getElementById("grade-label").textContent = `${grade}. razred`;
+  document.getElementById("player-label").textContent = `Igrač: ${currentPlayerName}`;
 
   showSection("quiz");
   renderQuestion();
@@ -145,7 +197,10 @@ function renderQuestion() {
   answered = false;
 
   const qObj = questions[currentIndex];
-  if (!qObj) return endQuiz();
+  if (!qObj) {
+    endQuiz();
+    return;
+  }
 
   const total = questions.length;
   document.getElementById("question-counter").textContent = `Pitanje ${currentIndex + 1} / ${total}`;
@@ -153,10 +208,9 @@ function renderQuestion() {
   document.getElementById("feedback").textContent = "";
   document.getElementById("next-btn").classList.add("hidden");
 
-  // progress bar
-  document.getElementById("progress-bar").style.width = `${(currentIndex / total) * 100}%`;
+  const progress = (currentIndex / total) * 100;
+  document.getElementById("progress-bar").style.width = `${progress}%`;
 
-  // answers
   const answersDiv = document.getElementById("answers");
   answersDiv.innerHTML = "";
 
@@ -164,12 +218,12 @@ function renderQuestion() {
     const btn = document.createElement("button");
     btn.className = "btn answer-btn";
     btn.textContent = text;
-    btn.addEventListener("click", () => handleAnswer(idx, btn));
+    btn.addEventListener("click", () => handleAnswer(idx));
     answersDiv.appendChild(btn);
   });
 }
 
-function handleAnswer(index, btnElement) {
+function handleAnswer(index) {
   if (answered) return;
   answered = true;
 
@@ -184,11 +238,13 @@ function handleAnswer(index, btnElement) {
 
   if (index === qObj.c) {
     score++;
-    document.getElementById("feedback").textContent = "Točno! ✔";
-    document.getElementById("feedback").style.color = "var(--success)";
+    const fb = document.getElementById("feedback");
+    fb.textContent = "Točno! ✔";
+    fb.style.color = "var(--success)";
   } else {
-    document.getElementById("feedback").textContent = "Netočno. ❌";
-    document.getElementById("feedback").style.color = "var(--danger)";
+    const fb = document.getElementById("feedback");
+    fb.textContent = "Netočno. ❌";
+    fb.style.color = "var(--danger)";
   }
 
   document.getElementById("next-btn").classList.remove("hidden");
@@ -196,17 +252,25 @@ function handleAnswer(index, btnElement) {
 
 function nextQuestion() {
   currentIndex++;
-  if (currentIndex >= questions.length) return endQuiz();
-  renderQuestion();
+  if (currentIndex >= questions.length) {
+    endQuiz();
+  } else {
+    renderQuestion();
+  }
 }
 
 function endQuiz() {
   showSection("end");
 
-  const total = questions.length;
+  const total = questions.length || 1;
   const percent = Math.round((score / total) * 100);
   const ocjena = calculateSchoolGrade(percent);
 
   document.getElementById("result").textContent = `Točnih odgovora: ${score} / ${total} (${percent}%).`;
   document.getElementById("grade-result").textContent = `Školska ocjena: ${ocjena}`;
+
+  // spremi rezultat za leaderboard
+  if (currentPlayerName && currentGrade) {
+    saveResultToLeaderboard(currentPlayerName, currentGrade, score, total);
+  }
 }
