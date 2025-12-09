@@ -27,13 +27,23 @@
     </div>
     <nav class="top-nav">
       <a href="index.html" class="nav-link active">Kviz</a>
+      <a href="leaderboard.html" class="nav-link">Leaderboard</a>
       <a href="admin.html" class="nav-link">Učiteljski panel</a>
     </nav>
   </header>
 
   <main class="container">
     <section class="card">
-      <h2 id="title">Odaberi razred</h2>
+      <h2 id="title">Početak</h2>
+
+      <!-- Unos imena -->
+      <div class="section">
+        <p>Prvo upiši svoje ime, a zatim odaberi razred.</p>
+        <div class="form-row">
+          <label for="player-name">Ime učenika</label>
+          <input id="player-name" type="text" placeholder="npr. Ante" />
+        </div>
+      </div>
 
       <!-- Odabir razreda -->
       <div id="select-level" class="section">
@@ -45,7 +55,7 @@
           <button data-grade="8" class="btn grade-btn">8. razred</button>
         </div>
         <p class="small-note">
-          Učitelj može dodavati svoja pitanja u <a href="admin.html">Učiteljskom panelu</a>.
+          Rezultati se spremaju i možeš ih vidjeti na <a href="leaderboard.html">Leaderboardu</a>.
         </p>
       </div>
 
@@ -53,6 +63,7 @@
       <div id="quiz" class="section hidden">
         <div class="quiz-header">
           <div class="chip" id="grade-label"></div>
+          <div class="chip" id="player-label"></div>
           <div class="chip" id="question-counter"></div>
         </div>
 
@@ -72,6 +83,9 @@
         <h2>Rezultat</h2>
         <p id="result"></p>
         <p id="grade-result"></p>
+        <p class="small-note">
+          Tvoj rezultat je spremljen. Pogledaj poredak na <a href="leaderboard.html">Leaderboard stranici</a>.
+        </p>
         <button id="restart-btn" class="btn primary">Ponovno pokreni kviz</button>
         <button id="change-grade-btn" class="btn secondary">Promijeni razred</button>
       </div>
