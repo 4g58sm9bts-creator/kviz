@@ -1,37 +1,61 @@
 // -------------------- POČETNA (default) PITANJA --------------------
-// Možeš ih kasnije proširiti
 
 const defaultQuestions = {
   5: [
     { q: "Koji je rod imenice 'jedrilica'?", a: ["muški", "ženski", "srednji"], c: 1 },
-    { q: "Riječ 'pjevanje' je:", a: ["imenica", "glagol", "pridjev"], c: 0 }
+    { q: "Riječ 'pjevanje' je:", a: ["imenica", "glagol", "pridjev"], c: 0 },
+    { q: "Koja je riječ glagol?", a: ["knjiga", "trčati", "kuća"], c: 1 },
+    { q: "Koja je imenica vlastita?", a: ["pas", "Rijeka", "voda"], c: 1 },
+    { q: "Riječ 'lijepo' je:", a: ["pridjev", "prilog", "glagol"], c: 1 },
+    { q: "Množina imenice 'oko' glasi:", a: ["okci", "oci", "oka"], c: 1 },
+    { q: "Suprotnost riječi 'visok' je:", a: ["nizak", "malen", "tanak"], c: 0 },
+    { q: "Kojoj vrsti riječi pripada 'na'?", a: ["prijedlog", "zamjenica", "veznik"], c: 0 },
+    { q: "Koliko glasova ima riječ 'more'?", a: ["3", "4", "5"], c: 1 },
+    { q: "Koja rečenica je ispravna?", a: ["Idem školi.", "Idem u školu.", "Idem škola."], c: 1 },
+    { q: "Što određuje padež?", a: ["odnos riječi u rečenici", "vrijeme glagola", "rod imenice"], c: 0 }
   ],
+
   6: [
-    { q: "Koja je zamjenica?", a: ["on", "kuća", "trčati"], c: 0 },
-    { q: "Glagolsko vrijeme 'pisao sam' je:", a: ["perfekt", "aorist", "prezent"], c: 0 }
+    { q: "Koja je posvojna zamjenica?", a: ["moj", "ja", "ono"], c: 0 },
+    { q: "Odredi vrstu broja: 'peti'", a: ["glavni", "redni", "neodređeni"], c: 1 },
+    { q: "Što označuje prilog?", a: ["osobu", "okolnost radnje", "stanje"], c: 1 },
+    { q: "Koja je riječ glagolski oblik?", a: ["pisanje", "pisao sam", "pisac"], c: 1 },
+    { q: "Antonim od 'spor' je:", a: ["tih", "brz", "malen"], c: 1 },
+    { q: "Što je predikat?", a: ["opis imenice", "glagol u rečenici", "veznik"], c: 1 },
+    { q: "Koja je upitna zamjenica?", a: ["tko", "naš", "netko"], c: 0 },
+    { q: "Komparativ od 'dobar' je:", a: ["dobriji", "bolji", "boljši"], c: 1 },
+    { q: "Koji glagol je povratan?", a: ["prati se", "prati", "prala"], c: 0 },
+    { q: "Koja je rečenica potvrdna?", a: ["Ne volim to.", "Volim to.", "Zašto to voliš?"], c: 1 }
   ],
+
   7: [
-    { q: "Što je priložna oznaka?", a: ["određuje glagol", "opisuje imenicu", "zamjenjuje imenicu"], c: 0 }
+    { q: "Koja je složena rečenica?", a: ["Sunce sja.", "Došao sam kad je zasjalo sunce.", "Sunce i mjesec."], c: 1 },
+    { q: "Što je objekt?", a: ["tko vrši radnju", "koga/što", "opis glagola"], c: 1 },
+    { q: "Veznik 'ali' je:", a: ["sastavni", "suprotni", "rastavni"], c: 1 },
+    { q: "Predikat je:", a: ["glagol u rečenici", "opis imenice", "veznik"], c: 0 },
+    { q: "'Idem gdje želiš' – koja je to rečenica?", a: ["mjesna", "namjerna", "uzročna"], c: 0 },
+    { q: "Glagolski prilog sadašnji je:", a: ["trčeći", "trčao", "trčanje"], c: 0 },
+    { q: "Riječ 'iako' uvodi:", a: ["dopusnu rečenicu", "mjesnu", "vremensku"], c: 0 },
+    { q: "Dopuni: 'Bio sam doma, ___ je padala kiša.'", a: ["da", "jer", "kad"], c: 2 },
+    { q: "Vrsta zavisne: 'Znam tko si.'", a: ["objektna", "subjektna", "uzročna"], c: 0 },
+    { q: "'Ako dođeš, idemo van.' – koja je vrsta?", a: ["vremenska", "pogodbena", "posljedična"], c: 1 }
   ],
+
   8: [
-    {
-      q: "Što je nezavisnosložena rečenica?",
-      a: [
-        "Rečenica sastavljena od više samostalnih surečenica",
-        "Rečenica u kojoj jedna ovisi o drugoj",
-        "Jednostavna rečenica s jednim predikatom"
-      ],
-      c: 0
-    },
-    {
-      q: "Koji su sastavni veznici?",
-      a: ["i, pa, te", "ali, nego, no", "ako, iako, premda"],
-      c: 0
-    }
+    { q: "Koji je rastavni veznik?", a: ["i", "ili", "ali"], c: 1 },
+    { q: "'Uči, pa ćeš uspjeti' je:", a: ["sastavna", "suprotna", "isključna"], c: 0 },
+    { q: "Primjer suprotne rečenice:", a: ["Dođi ili idi.", "Pokušao sam, ali nisam uspio.", "Dođi i sjedni."], c: 1 },
+    { q: "Koji veznik izriče isključenje?", a: ["nego", "ili", "samo"], c: 2 },
+    { q: "Koja rečenica izriče posljedicu?", a: ["Pada kiša, pa ostajemo doma.", "Volim ga, ali me ljuti.", "Uči ili idi."], c: 0 },
+    { q: "Sastavna rečenica spaja:", a: ["suprotne radnje", "ovisne dijelove", "nadovezujuće radnje"], c: 2 },
+    { q: "Odaberi isključnu rečenicu:", a: ["Dođi i sjedni.", "Dođi, ili idi.", "Pokušao sam, ali nisam uspio."], c: 1 },
+    { q: "Koji veznik NIJE nezavisnosložni?", a: ["i", "jer", "ali"], c: 1 },
+    { q: "'Pohitali su, te su brzo stigli.' je:", a: ["sastavna", "suprotna", "rastavna"], c: 0 },
+    { q: "Koja je ispravno nezavisnosložena?", a: ["Ne znam koji si.", "Ustao sam rano i otišao u školu.", "Volim te jer si dobar."], c: 1 }
   ]
 };
 
-// -------------------- POMOĆNE FUNKCIJE --------------------
+// -------------------- UČITANJE UČITELJSKIH PITANJA --------------------
 
 function loadTeacherQuestions() {
   try {
@@ -44,8 +68,7 @@ function loadTeacherQuestions() {
 function getQuestionsForGrade(grade) {
   const teacher = loadTeacherQuestions()[grade] || [];
   const base = defaultQuestions[grade] || [];
-  const all = [...base, ...teacher];
-  return shuffleArray(all);
+  return shuffleArray([...base, ...teacher]);
 }
 
 function shuffleArray(arr) {
@@ -56,6 +79,8 @@ function shuffleArray(arr) {
   }
   return a;
 }
+
+// -------------------- OCJENA --------------------
 
 function calculateSchoolGrade(percent) {
   if (percent >= 90) return 5;
@@ -84,40 +109,21 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  document.getElementById("next-btn").addEventListener("click", () => {
-    nextQuestion();
-  });
-
-  document.getElementById("restart-btn").addEventListener("click", () => {
-    if (currentGrade) {
-      startQuiz(currentGrade);
-    }
-  });
-
-  document.getElementById("change-grade-btn").addEventListener("click", () => {
-    showSection("select");
-  });
+  document.getElementById("next-btn").addEventListener("click", nextQuestion);
+  document.getElementById("restart-btn").addEventListener("click", () => startQuiz(currentGrade));
+  document.getElementById("change-grade-btn").addEventListener("click", () => showSection("select"));
 });
 
 // -------------------- PRIKAZ SEKCIJA --------------------
 
 function showSection(which) {
-  const selectLevel = document.getElementById("select-level");
-  const quiz = document.getElementById("quiz");
-  const end = document.getElementById("end");
+  document.getElementById("select-level").classList.add("hidden");
+  document.getElementById("quiz").classList.add("hidden");
+  document.getElementById("end").classList.add("hidden");
 
-  selectLevel.classList.add("hidden");
-  quiz.classList.add("hidden");
-  end.classList.add("hidden");
-
-  if (which === "select") {
-    document.getElementById("title").textContent = "Odaberi razred";
-    selectLevel.classList.remove("hidden");
-  } else if (which === "quiz") {
-    quiz.classList.remove("hidden");
-  } else if (which === "end") {
-    end.classList.remove("hidden");
-  }
+  if (which === "select") document.getElementById("select-level").classList.remove("hidden");
+  if (which === "quiz") document.getElementById("quiz").classList.remove("hidden");
+  if (which === "end") document.getElementById("end").classList.remove("hidden");
 }
 
 // -------------------- KVIZ --------------------
@@ -130,6 +136,7 @@ function startQuiz(grade) {
 
   document.getElementById("title").textContent = `Razred: ${grade}.`;
   document.getElementById("grade-label").textContent = `${grade}. razred`;
+
   showSection("quiz");
   renderQuestion();
 }
@@ -138,10 +145,7 @@ function renderQuestion() {
   answered = false;
 
   const qObj = questions[currentIndex];
-  if (!qObj) {
-    endQuiz();
-    return;
-  }
+  if (!qObj) return endQuiz();
 
   const total = questions.length;
   document.getElementById("question-counter").textContent = `Pitanje ${currentIndex + 1} / ${total}`;
@@ -149,9 +153,10 @@ function renderQuestion() {
   document.getElementById("feedback").textContent = "";
   document.getElementById("next-btn").classList.add("hidden");
 
-  const progress = ((currentIndex) / total) * 100;
-  document.getElementById("progress-bar").style.width = `${progress}%`;
+  // progress bar
+  document.getElementById("progress-bar").style.width = `${(currentIndex / total) * 100}%`;
 
+  // answers
   const answersDiv = document.getElementById("answers");
   answersDiv.innerHTML = "";
 
@@ -169,9 +174,9 @@ function handleAnswer(index, btnElement) {
   answered = true;
 
   const qObj = questions[currentIndex];
+  const allButtons = document.querySelectorAll(".answer-btn");
 
-  const answerButtons = document.querySelectorAll(".answer-btn");
-  answerButtons.forEach((b, i) => {
+  allButtons.forEach((b, i) => {
     if (i === qObj.c) b.classList.add("correct");
     if (i === index && i !== qObj.c) b.classList.add("wrong");
     b.disabled = true;
@@ -179,13 +184,11 @@ function handleAnswer(index, btnElement) {
 
   if (index === qObj.c) {
     score++;
-    const fb = document.getElementById("feedback");
-    fb.textContent = "Točno! ✔";
-    fb.style.color = "var(--success)";
+    document.getElementById("feedback").textContent = "Točno! ✔";
+    document.getElementById("feedback").style.color = "var(--success)";
   } else {
-    const fb = document.getElementById("feedback");
-    fb.textContent = "Netočno. ❌";
-    fb.style.color = "var(--danger)";
+    document.getElementById("feedback").textContent = "Netočno. ❌";
+    document.getElementById("feedback").style.color = "var(--danger)";
   }
 
   document.getElementById("next-btn").classList.remove("hidden");
@@ -193,24 +196,17 @@ function handleAnswer(index, btnElement) {
 
 function nextQuestion() {
   currentIndex++;
-  if (currentIndex >= questions.length) {
-    endQuiz();
-  } else {
-    renderQuestion();
-  }
+  if (currentIndex >= questions.length) return endQuiz();
+  renderQuestion();
 }
 
 function endQuiz() {
   showSection("end");
 
-  const total = questions.length || 1;
+  const total = questions.length;
   const percent = Math.round((score / total) * 100);
   const ocjena = calculateSchoolGrade(percent);
 
-  document.getElementById(
-    "result"
-  ).textContent = `Točnih odgovora: ${score} od ${total} (${percent}%).`;
-  document.getElementById(
-    "grade-result"
-  ).textContent = `Školska ocjena: ${ocjena}`;
+  document.getElementById("result").textContent = `Točnih odgovora: ${score} / ${total} (${percent}%).`;
+  document.getElementById("grade-result").textContent = `Školska ocjena: ${ocjena}`;
 }
