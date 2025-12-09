@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Leaderboard – Hrvatska gramatika</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+</head>
+<body>
+  <header class="app-header">
+    <div class="logo-wrap">
+      <img src="assets/logo.png" alt="Logo kviza" class="logo" />
+      <div>
+        <h1>Leaderboard</h1>
+        <p class="subtitle">Najbolji rezultati kviza</p>
+      </div>
+    </div>
+    <nav class="top-nav">
+      <a href="index.html" class="nav-link">Kviz</a>
+      <a href="leaderboard.html" class="nav-link active">Leaderboard</a>
+      <a href="admin.html" class="nav-link">Učiteljski panel</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="card">
+      <h2>Poredak igrača</h2>
+
+      <div class="leaderboard-controls">
+        <div class="form-row">
+          <label for="lb-grade-filter">Razred</label>
+          <select id="lb-grade-filter">
+            <option value="all">Svi razredi</option>
+            <option value="5">5. razred</option>
+            <option value="6">6. razred</option>
+            <option value="7">7. razred</option>
+            <option value="8">8. razred</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <label for="lb-limit">Broj prikazanih</label>
+          <select id="lb-limit">
+            <option value="10">Top 10</option>
+            <option value="20">Top 20</option>
+            <option value="50">Top 50</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="leaderboard-wrapper">
+        <table class="leaderboard-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Ime</th>
+              <th>Razred</th>
+              <th>Postotak</th>
+              <th>Bodovi</th>
+              <th>Datum</th>
+            </tr>
+          </thead>
+          <tbody id="lb-body">
+            <!-- puni se iz leaderboard.js -->
+          </tbody>
+        </table>
+
+        <p id="lb-empty" class="small-note hidden">
+          Još nema spremljenih rezultata. Odigraj kviz pa se vrati ovdje! 🙂
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    Napravio <strong>Ante Paro</strong>, učenik <strong>OŠ Jurja Dalmatinca Pag</strong> (2025).
+  </footer>
+
+  <script src="leaderboard.js"></script>
+</body>
+</html>
