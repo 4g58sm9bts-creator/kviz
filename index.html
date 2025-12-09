@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Kviz – Hrvatska gramatika</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+
+  <!--
+    =======================================================
+     Kviz iz hrvatske gramatike
+     Napravio: Ante Paro
+     Učenik OŠ Jurja Dalmatinca Pag
+     Godina: 2025
+    =======================================================
+  -->
+</head>
+<body>
+  <header class="app-header">
+    <div class="logo-wrap">
+      <img src="assets/logo.png" alt="Logo kviza" class="logo" />
+      <div>
+        <h1>Hrvatska gramatika – kviz</h1>
+        <p class="subtitle">Interaktivni kviz za 5. – 8. razred</p>
+      </div>
+    </div>
+    <nav class="top-nav">
+      <a href="index.html" class="nav-link active">Kviz</a>
+      <a href="admin.html" class="nav-link">Učiteljski panel</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="card">
+      <h2 id="title">Odaberi razred</h2>
+
+      <!-- Odabir razreda -->
+      <div id="select-level" class="section">
+        <p>Odaberi razred za koji želiš rješavati kviz:</p>
+        <div class="grade-grid">
+          <button data-grade="5" class="btn grade-btn">5. razred</button>
+          <button data-grade="6" class="btn grade-btn">6. razred</button>
+          <button data-grade="7" class="btn grade-btn">7. razred</button>
+          <button data-grade="8" class="btn grade-btn">8. razred</button>
+        </div>
+        <p class="small-note">
+          Učitelj može dodavati svoja pitanja u <a href="admin.html">Učiteljskom panelu</a>.
+        </p>
+      </div>
+
+      <!-- Kviz -->
+      <div id="quiz" class="section hidden">
+        <div class="quiz-header">
+          <div class="chip" id="grade-label"></div>
+          <div class="chip" id="question-counter"></div>
+        </div>
+
+        <div id="progress">
+          <div id="progress-bar"></div>
+        </div>
+
+        <h3 id="question"></h3>
+        <div id="answers" class="answers-grid"></div>
+        <p id="feedback" class="feedback"></p>
+
+        <button id="next-btn" class="btn secondary hidden">Sljedeće pitanje</button>
+      </div>
+
+      <!-- Kraj -->
+      <div id="end" class="section hidden">
+        <h2>Rezultat</h2>
+        <p id="result"></p>
+        <p id="grade-result"></p>
+        <button id="restart-btn" class="btn primary">Ponovno pokreni kviz</button>
+        <button id="change-grade-btn" class="btn secondary">Promijeni razred</button>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    Napravio <strong>Ante Paro</strong>, učenik <strong>OŠ Jurja Dalmatinca Pag</strong> (2025).
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
