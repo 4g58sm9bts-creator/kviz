@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Učiteljski panel – Hrvatska gramatika</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+</head>
+<body>
+  <header class="app-header">
+    <div class="logo-wrap">
+      <img src="assets/logo.png" alt="Logo kviza" class="logo" />
+      <div>
+        <h1>Učiteljski panel</h1>
+        <p class="subtitle">Upravljanje pitanjima za kviz</p>
+      </div>
+    </div>
+    <nav class="top-nav">
+      <a href="index.html" class="nav-link">Kviz</a>
+      <a href="admin.html" class="nav-link active">Učiteljski panel</a>
+    </nav>
+  </header>
+
+  <main class="container admin-layout">
+    <section class="card">
+      <h2>Dodaj ili uredi pitanje</h2>
+      <form id="question-form" class="form-grid">
+        <div class="form-row">
+          <label for="form-grade">Razred</label>
+          <select id="form-grade">
+            <option value="5">5. razred</option>
+            <option value="6">6. razred</option>
+            <option value="7">7. razred</option>
+            <option value="8">8. razred</option>
+          </select>
+        </div>
+
+        <div class="form-row full-width">
+          <label for="form-question">Pitanje</label>
+          <textarea id="form-question" rows="2"></textarea>
+        </div>
+
+        <div class="form-row full-width">
+          <label>Odgovori (3 ponuđena odgovora)</label>
+          <input id="form-a1" type="text" placeholder="Odgovor 1" />
+          <input id="form-a2" type="text" placeholder="Odgovor 2" />
+          <input id="form-a3" type="text" placeholder="Odgovor 3" />
+        </div>
+
+        <div class="form-row">
+          <label for="form-correct">Točan odgovor</label>
+          <select id="form-correct">
+            <option value="0">Odgovor 1</option>
+            <option value="1">Odgovor 2</option>
+            <option value="2">Odgovor 3</option>
+          </select>
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="btn primary" id="save-btn">Spremi pitanje</button>
+          <button type="button" class="btn secondary" id="reset-btn">Očisti obrazac</button>
+        </div>
+
+        <p id="form-message" class="form-message"></p>
+      </form>
+    </section>
+
+    <section class="card">
+      <h2>Pitanja dodana od učitelja</h2>
+
+      <div class="form-row">
+        <label for="filter-grade">Prikaži pitanja za razred</label>
+        <select id="filter-grade">
+          <option value="5">5. razred</option>
+          <option value="6">6. razred</option>
+          <option value="7">7. razred</option>
+          <option value="8">8. razred</option>
+        </select>
+      </div>
+
+      <div id="questions-list" class="questions-list">
+        <!-- Dinamički se puni iz admin.js -->
+      </div>
+
+      <p class="small-note">
+        Napomena: početna (zadana) pitanja ne mogu se brisati ovdje – ovo su samo pitanja koja dodaje učitelj.
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    Napravio <strong>Ante Paro</strong>, učenik <strong>OŠ Jurja Dalmatinca Pag</strong> (2025).
+  </footer>
+
+  <script src="admin.js"></script>
+</body>
+</html>
